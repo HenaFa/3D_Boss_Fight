@@ -39,13 +39,14 @@ public class EnemyController: MonoBehaviour
         GameObject bulletObj = Instantiate(enemyBullet, spawnPoint.transform.position, spawnPoint.transform.rotation) as GameObject;
         Rigidbody bulletRig = bulletObj.GetComponent<Rigidbody>();
         bulletRig.AddForce(bulletRig.transform.forward * enemySpeed);
-        Destroy(bulletObj, 5f);
+        Destroy(bulletObj, 3f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.CompareTag("Player"))
         {
+            Destroy(other.gameObject);
             Destroy(gameObject, 5f);
         }
 
